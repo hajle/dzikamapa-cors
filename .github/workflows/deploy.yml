@@ -1,0 +1,38 @@
+name: Build and Deploy CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - prod
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # w przypadku aplikacji npm
+      - run: npm install
+      - run: npm run build
+
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
+          # name: id_rsa # optional
+
+      - name: Adding Known Hosts
+        run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Copy files on server – stage
+        if: github.ref == 'refs/heads/main'
+        run: rsync -avz --delete -e "ssh -p ${{ secrets.SSH_PORT }}" ./build/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DESTINATION_PATH }}
+
+      - name: Copy files on server – prod
+        if: github.ref == 'refs/heads/prod'
+        run: rsync -avz --delete -e "ssh -p ${{ secrets.SSH_PORT }}" ./build/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DESTINATION_PATH_PROD }}

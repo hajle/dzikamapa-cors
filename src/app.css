@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/forms";
+
+@theme {
+	--color-gplightgray: oklch(0.9791 0 0);
+	--color-gpgreen: oklch(0.7285 0.2152 135.64);
+	--font-poppins: 'Poppins', sans-serif;
+	--font-paytone: 'Paytone One', sans-serif;
+}
+
+@keyframes pulsedot {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.7;
+	}
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+}
+
+/* Apply to circles */
+.pulse-circle {
+	animation: pulsedot 2s ease-in-out infinite;
+}
