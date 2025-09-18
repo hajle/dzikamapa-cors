@@ -19,12 +19,10 @@ export const POST: RequestHandler = async ({ request }) => {
 		);
 
 		const result = await response.json();
-		console.log(`result payu: ${result}`);
 
 		return json(result, { status: response.status });
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	} catch (error) {
-		console.log(`payu error: ${error}`);
 		return json({ error: 'Payment processing failed' }, { status: 500 });
 	}
 };
