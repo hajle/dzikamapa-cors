@@ -20,6 +20,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		return json(result, { status: response.status });
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	} catch (error) {
+		console.log(`blik error: ${error}`);
 		return json({ error: 'BLIK payment processing failed' }, { status: 500 });
 	}
 };
