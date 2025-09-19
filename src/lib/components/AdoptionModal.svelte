@@ -690,8 +690,7 @@
 								},
 								body: JSON.stringify(dataForPayment)
 							}).then(async (response) => {
-								console.log('get payu api response');
-								console.log(`payu response: ${JSON.stringify(response)}`);
+								console.log(`server card response: ${JSON.stringify(response)}`);
 							});
 						});
 					}
@@ -721,8 +720,7 @@
 					},
 					body: JSON.stringify(dataForPayment)
 				}).then(async (response) => {
-					console.log('get blik api response');
-					console.log(`blik response: ${JSON.stringify(response)}`);
+					console.log(`server blik response: ${JSON.stringify(response)}`);
 				});
 
 				// fetch('https://wspieram.greenpeace.pl/api/payment/payu/payment/blik', {
