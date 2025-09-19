@@ -4,6 +4,7 @@ import type { RequestHandler } from './$types';
 export const POST: RequestHandler = async ({ request }) => {
 	try {
 		const paymentData = await request.json();
+		console.log('paymentData', paymentData);
 
 		const response = await fetch('https://wspieram.greenpeace.pl/api/payment/payu/payment/blik', {
 			method: 'POST',

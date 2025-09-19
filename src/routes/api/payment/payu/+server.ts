@@ -4,6 +4,7 @@ import type { RequestHandler } from './$types';
 export const POST: RequestHandler = async ({ request }) => {
 	try {
 		const paymentData = await request.json();
+		console.log('paymentData', paymentData);
 
 		// Server-to-server request (no CORS restrictions)
 		const response = await fetch(
