@@ -7,18 +7,13 @@ export const POST: RequestHandler = async ({ request }) => {
 		console.log('paymentData', paymentData);
 
 		// Server-to-server request (no CORS restrictions)
-		const response = await fetch(
-			'https://wspieram.greenpeace.pl/api/payment/payu/payment/recurring',
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Accept: 'application/json',
-					'Access-Control-Allow-Origin': '*'
-				},
-				body: JSON.stringify(paymentData)
-			}
-		);
+		const response = await fetch('https://apiv1.dzikamapa.pl/api/payment/payu/payment/recurring', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(paymentData)
+		});
 
 		const result = await response.json();
 
