@@ -693,6 +693,7 @@
 								body: JSON.stringify(dataForPayment)
 							}).then(async (response) => {
 								console.log(`server card response: ${JSON.stringify(response)}`);
+								console.dir(response);
 							});
 						});
 					}
@@ -723,6 +724,7 @@
 					body: JSON.stringify(dataForPayment)
 				}).then(async (response) => {
 					console.log(`server blik response: ${JSON.stringify(response)}`);
+					console.dir(response);
 				});
 
 				// fetch('https://wspieram.greenpeace.pl/api/payment/payu/payment/blik', {
