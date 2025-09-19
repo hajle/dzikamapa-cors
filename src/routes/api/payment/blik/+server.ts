@@ -6,7 +6,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		const paymentData = await request.json();
 		console.log('paymentData', paymentData);
 
-		const response = await fetch('https://wspieram.greenpeace.pl/api/payment/payu/payment/blik', {
+		const response = await fetch('/api/payment/blik', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
